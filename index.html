@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio - Jhuni Shukla</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    nav {
+      position: fixed;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(12px);
+      z-index: 1000;
+      padding: 1rem 0;
+      animation: slideIn 0.8s ease-out;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    nav li {
+      margin: 0.5rem 1.5rem;
+      font-size: 1.2rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    nav li:hover {
+      color: #00e6ff;
+      transform: translateY(-3px);
+    }
+
+    nav a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    header {
+      padding-top: 5rem;
+      text-align: center;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .home {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4rem 2rem;
+      min-height: 100vh;
+      background: url('https://source.unsplash.com/random/1920x1080/?tech') no-repeat center center/cover;
+      background-attachment: fixed;
+      position: relative;
+      z-index: 1;
+    }
+
+    .home::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: -1;
+    }
+
+    .home-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 80rem;
+      margin: 0 auto;
+    }
+
+    .home-text {
+      flex: 1;
+      min-width: 16rem;
+      text-align: left;
+      padding-right: 2rem;
+    }
+
+    .home img {
+      flex: 0 0 auto;
+      max-width: 20rem;
+      height: auto;
+      border-radius: 50%;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+      transition: transform 0.5s ease;
+    }
+
+    .home img:hover {
+      transform: scale(1.05);
+    }
+
+    .home h2 {
+      font-size: 1.8rem;
+      line-height: 1.6;
+      font-weight: 300;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .section {
+      padding: 5rem 2rem;
+      text-align: center;
+      animation: fadeInUp 1.2s ease-out;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+    }
+
+    .project-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      background: rgba(0, 230, 255, 0.15);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+      gap: 1rem;
+      padding: 2rem;
+      list-style: none;
+    }
+
+    .skills-grid li {
+      background: linear-gradient(45deg, #1e3c72, #00e6ff);
+      padding: 1rem;
+      border-radius: 0.75rem;
+      font-weight: 600;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .skills-grid li:hover {
+      transform: scale(1.1);
+    }
+
+    footer {
+      padding: 2rem;
+      text-align: center;
+      background: #0a1a3a;
+    }
+
+    footer a {
+      color: #00e6ff;
+      text-decoration: none;
+      margin: 0 0.75rem;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+      color: #03c4d1;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(-100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(2rem); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+        padding: 1rem;
+      }
+
+      .home {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem 1rem;
+      }
+
+      .home-content {
+        flex-direction: column;
+      }
+
+      .home-text {
+        text-align: center;
+        padding: 0;
+        margin-bottom: 2rem;
+      }
+
+      .home img {
+        margin: 0 auto;
+      }
+
+      .home h2 {
+        font-size: 1.4rem;
+      }
+
+      .section {
+        padding: 3rem 1rem;
+      }
+
+      .projects {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      .home h2 {
+        font-size: 1.2rem;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="#home">🏠 Home</a></li>
+      <li><a href="#about">👤 About</a></li>
+      <li><a href="#projects">📂 Projects</a></li>
+      <li><a href="#skills">🎯 Skills</a></li>
+      <li><a href="jhuni98.pdf" target="_blank">📞 Dw Cv</a></li>
+    </ul>
+  </nav>
+
+  <header id="home" class="home">
+    <div class="home-content">
+      <div class="home-text">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">Jhuni Shukla</h1>
+        <p class="text-xl md:text-2xl mb-6">Python Full Stack Developer</p>
+        <h2>Hello, I’m Jhuni — a software engineer crafting elegant solutions with Python, Django, and modern web technologies.
+            <br>
+            <button><a href="jhuni98.pdf" target="_blank">📞 Hire me</a></button></h2>
+      </div>
+      <img src="js.jpeg" alt="Jhuni's photo">
+    </div>
+  </header>
+
+  <section id="about" class="section">
+    <h1 class="text-3xl md:text-4xl font-bold mb-6">About Me</h1>
+    <p class="text-lg max-w-3xl mx-auto">I’m a Computer Science graduate from MMH College, specializing in full-stack development with expertise in Python, Django, and modern front-end technologies. I transform complex ideas into seamless, user-friendly web applications with a focus on performance and design.</p>
+  </section>
+
+  <section id="projects" class="section">
+    <h1 class="text-3xl md:text-4xl font-bold mb-6">Projects</h1>
+    <div class="projects">
+      <div class="project-card">
+        <h2 class="text-xl font-semibold mb-2">🔹 Vendor Management System</h2>
+        <p>Streamlined vendor registration, verification, and workflows with Django admin, featuring a clean UI and PDF report exports.</p>
+      </div>
+      <div class="project-card">
+        <h2 class="text-xl font-semibold mb-2">🔹 Visitor Management System</h2>
+        <p>Developed OTP-based visitor verification and meeting scheduling, integrated with department and host information.</p>
+      </div>
+      <div class="project-card">
+        <h2 class="text-xl font-semibold mb-2">🔹 Grievance & Complaint Portal</h2>
+        <p>Built a portal for staff to raise complaints with category filters, status tracking, and resolution updates by management.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="section">
+    <h1 class="text-3xl md:text-4xl font-bold mb-6">Skills</h1>
+    <ul class="skills-grid">
+      <li>HTML / CSS</li>
+      <li>Tailwind CSS</li>
+      <li>JavaScript</li>
+      <li>Python</li>
+      <li>Django</li>
+      <li>React.js</li>
+      <li>SQL</li>
+      <li>Git & GitHub</li>
+      <li>REST API</li>
+      <li>AWS (Basics)</li>
+    </ul>
+  </section>
+
+  <footer>
+    <p class="text-lg">
+      <a href="mailto:jhuni3040@gmail.com">📧 Email Drop Message</a> | 
+      <a href="https://github.com/jhuni-shukla" target="_blank">🐙 GitHub </a>
+      <a href="https://www.linkedin.com/in/jhuni-shukla3040/" target="_blank">🔗 LinkedIn Drop Message</a> |
+    </p>
+    <p class="mt-2">© 2025 Jhuni Shukla. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+</body>
+</html>
